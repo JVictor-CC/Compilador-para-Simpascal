@@ -1,4 +1,4 @@
-// ola
+write "digite as notas do aluno";
 
 (*
     sadassadsadsa

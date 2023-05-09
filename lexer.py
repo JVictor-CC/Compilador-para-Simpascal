@@ -45,6 +45,8 @@ lg.add('COLON', r':')
 lg.add('COMMA', r',')
 lg.add('DOT', r'\.')
 
+lg.add('ERROR', r'.')
+
 # Ignore
 lg.ignore(r'\s+')
 lg.ignore(r'\{(?:.|\n)*?\}')
@@ -53,9 +55,21 @@ lg.ignore(r'\/\/.*')
 
 
 lexer = lg.build()
+errorCount = []
+
+def handleLexerError(token):
+    error = {'Simbolo':token.value, 'linha':token.source_pos.lineno}
+    return error
+
 
 with open('input.txt', 'r') as file:
     tokens = lexer.lex(file.read())
 
-for token in tokens:
-    print(f'Token: {token.name.ljust(15)} Valor {token.value.ljust(15)} Linha {str(token.source_pos.lineno).ljust(10)} Coluna {str(token.source_pos.colno).ljust(10)}')
+    for token in tokens:
+        if(token.name == 'ERROR'):
+            errorCount.append(handleLexerError(token))
+            continue
+
+        print(f'Token: {token.name.ljust(15)} Valor {token.value.ljust(15)} Linha {str(token.source_pos.lineno).ljust(10)} Coluna {str(token.source_pos.colno).ljust(10)}')
+
+    print(errorCount)
