@@ -1,15 +1,4 @@
-(*
-    sadassadsadsa
-    sadassadsadsa
-    sadassadsadsa
-*)
-
-{
-    fdsgfdgfadgfad
-    adsfdsgfag
-}
-
-const TAM = 10;
+const TAM = 10.5;
 type vetor = array [15] of integer;
 type aluno = record
 
@@ -78,6 +67,7 @@ begin
 m := maior(a) + menor(a);
 result := m / 2
 end
+
 begin
 A:=TAM + 20;
 B := fatorial(A);
